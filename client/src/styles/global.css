@@ -1,0 +1,194 @@
+@import url("tldraw/tldraw.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .view-title {
+        @apply mb-2 w-full border-b pb-2 text-start text-lg;
+    }
+    
+    .glass-effect {
+        @apply backdrop-blur-md bg-white/10 border border-white/20;
+    }
+    
+    .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-bg-alt {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .gradient-bg-dark {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .glow-effect {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .glow-effect-hover:hover {
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        transform: translateY(-2px);
+    }
+}
+
+body {
+    font-family: "Space Grotesk", sans-serif;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+
+    --sb-track-color: #3d404a;
+    --sb-thumb-color: #e1e1ffb3;
+    --sb-size: 6px;
+}
+
+::-webkit-scrollbar {
+    width: var(--sb-size);
+    height: var(--sb-size);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 5px;
+    height: var(--sb-size);
+    width: var(--sb-size);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 5px;
+    height: var(--sb-size);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    body {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+    animation: slide-in 0.6s ease-out;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out;
+}
+
+/* Editor */
+
+.cm-editor {
+    max-height: 93vh;
+}
+
+.cm-editor .cm-scroller {
+    font-family: "Space Mono", monospace;
+    /* min-height: 100vh; */
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .cm-editor {
+        max-height: calc(93vh - 60px);
+    }
+
+    .cm-editor .cm-scroller {
+        min-height: calc(93vh - 60px);
+    }
+}
+
+/* Github Corner */
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg);
+    }
+    40%,
+    80% {
+        transform: rotate(10deg);
+    }
+}
